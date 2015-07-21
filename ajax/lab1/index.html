@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Лабораторная работа 1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="ru" />
+	<script type="text/javascript">
+
+        var req;
+
+	function Book(){
+            if(req.readyState == 4 && req.status == 200){
+                var book = document.getElementById("divResult");
+                book.innerHTML = req.responseText;
+            }
+        }
+        
+        function showBook() {
+            var number = document.getElementById("txtNum").value;
+           
+            req = new XMLHttpRequest();
+            req.onreadystatechange = Book;
+            req.open("GET", "getbooktxt.php?num=" + number, true);
+            req.send(null);
+        }
+   
+	</script>
+</head>
+<body>
+	<h1>Лабораторная работа 1</h1>
+	<form onsubmit="return false">
+		<label for="txtNum">Введите номер книги:</label>
+		<input id="txtNum" type="text" />
+		<!-- Задание 4: не забудьте поставить обработчик нажатия -->
+		<button onclick="showBook()">Поиск</button>
+	</form>
+	<div id="divResult">&nbsp;</div>
+</body>
+</html>
+

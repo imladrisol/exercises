@@ -1,0 +1,4 @@
+# запрет кеширования
+<IfModule mod_headers.c>
+	Header append Cache-Control "no-store, no-cache, max-age=0"
+</IfModule>
